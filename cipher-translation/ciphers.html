@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<title>MedCiphers</title>
+		<link rel="stylesheet" href="../normal.css" />
+		<link rel="icon" type="image/x-icon" href="../images/cap.ico" />
+	</head>
+
+	<body>
+    <h1>Cipher Translation Tool</h1>
+    <hr>
+		<label for="text">Enter the text you want to be encoded or decoded: </label>
+		<br />
+		<textarea id="textarea" placeholder="Enter text here"></textarea>
+		<br />
+		<label for="Ciphers">Select which cipher you want to use</label>
+		<select name="Ciphers" id="dropdown">
+			<option value="Select" selected="selected">Select:</option>
+			<option value="Caesar">Caesar Cipher</option>
+			<option value="Atbash">Atbash Cipher</option>
+			<option value="A1Z26">A1Z26 Cipher</option>
+		</select>
+		<br />
+		
+		<button id="button">Go!</button>
+    <p id="output"></p>
+
+		<script>
+			function caesarCipher(text, offset) {
+				var alph = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
+				var alphCaps = alph.toUpperCase();
+				for (var i = 0; i < text.length; i++) {
+					if (alph.indexOf(text.charAt(i)) != -1) {
+						text =
+							text.substr(0, i) +
+							alph.charAt(alph.indexOf(text.charAt(i)) + offset) +
+							text.substr(i + 1); // lowercase
+					} else if (alphCaps.indexOf(text.charAt(i)) != -1) {
+						text =
+							text.substr(0, i) +
+							alphCaps.charAt(alphCaps.indexOf(text.charAt(i)) + offset) +
+							text.substr(i + 1); // uppercase
+					}
+				}
+				return text;
+			}
+
+			function atbashCipher(text) {
+				var alph = "abcdefghijklmnopqrstuvwxyz";
+				var reverse = "zyxwvutsrqponmlkjihgfedcba";
+				var alphCaps = alph.toUpperCase();
+				var revCaps = reverse.toUpperCase();
+				for (var i = 0; i < text.length; i++) {
+					if (alph.indexOf(text.charAt(i)) != -1) {
+						text =
+							text.substr(0, i) +
+							reverse.charAt(alph.indexOf(text.charAt(i))) +
+							text.substr(i + 1); // lowercase
+					} else if (alphCaps.indexOf(text.charAt(i)) != -1) {
+						text =
+							text.substr(0, i) +
+							revCaps.charAt(alphCaps.indexOf(text.charAt(i))) +
+							text.substr(i + 1); // uppercase
+					}
+				}
+				return text;
+			}
+
+			function a1z26Cipher(text) {
+				var alph = "abcdefghijklmnopqrstuvwxyz";
+				var result = "";
+				var lastTranslated = false;
+				for (var i = 0; i < text.length; i++) {
+					if (alph.indexOf(text.toLowerCase().charAt(i)) != -1) {
+						var translation = "";
+
+						if (lastTranslated) {
+							translation += "-"; // makes it easier to read when words are connected
+						}
+
+						translation += alph.indexOf(text.toLowerCase().charAt(i)) + 1; // turns the letter into it's place in the alphabet
+
+						result += translation;
+						lastTranslated = true;
+					} else {
+						result += text.charAt(i); // keeps the untranslated text
+						lastTranslated = false;
+					}
+				}
+				return result;
+			}
+
+			document.getElementById("button").onclick = function () {
+				var text = document.getElementById("textarea").value;
+				var cipher = document.getElementById("dropdown").value;
+				if ((cipher == "Caesar")) {
+					var output =
+						"All possible caesar cipher translations for your input: <br>";
+					for (var i = 1; i < 26; i++) {
+						output += "Offset " + i + ": " + caesarCipher(text, i) + "<br>";
+					}
+					document.getElementById("output").innerHTML = output;
+				} else if ((cipher == "Atbash")) {
+					document.getElementById("output").innerHTML =
+						"Atbash cipher translation of your input: <br>" +
+						atbashCipher(text);
+				} else if ((cipher == "A1Z26")) {
+					document.getElementById("output").innerHTML =
+						"A1Z26 cipher translation of your input: <br>" + a1z26Cipher(text);
+				} else {
+					document.getElementById("output").innerHTML = "Please select the cipher you want to use";
+				}
+			};
+		</script>
+	</body>
+</html>
