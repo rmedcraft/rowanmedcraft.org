@@ -1,7 +1,7 @@
 /*
     Rowan Medcraft
     Created 10/8/2023
-    Last Updated: 1/8/2024
+    Last Updated: 1/9/2024
     Various Cipher Translations
 */
 
@@ -69,7 +69,25 @@ function a1z26Cipher(text) {
 	return result;
 }
 
-document.getElementById("button").onclick = function() {
+function asciiBinary(text) {
+	var result = "";
+	for (var i = 0; i < text.length; i++) {
+		//codePointAt(i) gets the current character and translates it into base 10 ASCII
+		//toString(2) translates the base 10 into binary
+		var s = text.codePointAt(i).toString(2) + " ";
+
+		// makes sure the leading zeros arent rounded off
+		while(s.length <= 8){
+			s = '0' + s;
+		}
+		console.log(s);
+
+		result += s.toString();
+	}
+	return result;
+}
+
+function output() {
 	var text = document.getElementById("textarea").value;
 	var cipher = document.getElementById("dropdown").value;
 	if ((cipher = "Caesar")) {
@@ -91,3 +109,5 @@ console.log(
 );
 
 console.log("A1Z26 Cipher: " + a1z26Cipher("I'm a reall;y cool guy"));
+
+console.log("ASCII: " + asciiBinary("help please"));

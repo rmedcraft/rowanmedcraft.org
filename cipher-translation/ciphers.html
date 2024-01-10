@@ -7,8 +7,8 @@
 	</head>
 
 	<body>
-    <h1>Cipher Translation Tool</h1>
-    <hr>
+		<h1>Cipher Translation Tool</h1>
+		<hr />
 		<label for="text">Enter the text you want to be encoded or decoded: </label>
 		<br />
 		<textarea id="textarea" placeholder="Enter text here"></textarea>
@@ -19,11 +19,12 @@
 			<option value="Caesar">Caesar Cipher</option>
 			<option value="Atbash">Atbash Cipher</option>
 			<option value="A1Z26">A1Z26 Cipher</option>
+			<option value="Binary">ASCII Binary</option>
 		</select>
 		<br />
-		
+
 		<button id="button">Go!</button>
-    <p id="output"></p>
+		<p id="output"></p>
 
 		<script>
 			function caesarCipher(text, offset) {
@@ -90,25 +91,46 @@
 				return result;
 			}
 
+			function asciiBinary(text) {
+				var result = "";
+				for (var i = 0; i < text.length; i++) {
+					//codePointAt(i) gets the current character and translates it into base 10 ASCII
+					//toString(2) translates the base 10 into binary
+					var s = text.codePointAt(i).toString(2) + " ";
+
+					// makes sure the leading zeros arent rounded off
+					while(s.length <= 8){
+						s = "0" + s;
+					}
+
+					result += s;
+				}
+				return result;
+			}
+
 			document.getElementById("button").onclick = function () {
 				var text = document.getElementById("textarea").value;
 				var cipher = document.getElementById("dropdown").value;
-				if ((cipher == "Caesar")) {
+				if (cipher == "Caesar") {
 					var output =
 						"All possible caesar cipher translations for your input: <br>";
 					for (var i = 1; i < 26; i++) {
 						output += "Offset " + i + ": " + caesarCipher(text, i) + "<br>";
 					}
 					document.getElementById("output").innerHTML = output;
-				} else if ((cipher == "Atbash")) {
+				} else if (cipher == "Atbash") {
 					document.getElementById("output").innerHTML =
 						"Atbash cipher translation of your input: <br>" +
 						atbashCipher(text);
-				} else if ((cipher == "A1Z26")) {
+				} else if (cipher == "A1Z26") {
 					document.getElementById("output").innerHTML =
 						"A1Z26 cipher translation of your input: <br>" + a1z26Cipher(text);
+				} else if (cipher == "Binary") {
+					document.getElementById("output").innerHTML =
+						"ASCII Binary translation of your input: <br>" + asciiBinary(text);
 				} else {
-					document.getElementById("output").innerHTML = "Please select the cipher you want to use";
+					document.getElementById("output").innerHTML =
+						"Please select the cipher you want to use";
 				}
 			};
 		</script>
