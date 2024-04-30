@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MedFinal Grade Calculator</title>
+		<link rel="stylesheet" href="../normal.css" />
+		<link rel="icon" type="image/x-icon" href="../images/cap.ico" />
+    </head>
+    <body>
+        <h1>Final Grade Calculator</h1>
+        <hr>
+        <label for="gradeNow">Grade you have now:</label>
+        <br>
+        <input id="gradeNow" placeholder="55">%</input>
+        <br><br>
+        <label for="finalWeight">Weight of the final exam:</label>
+        <br>
+        <input id="finalWeight" placeholder="20">%</input>
+        <br><br>
+        <label for="gradeWanted">Grade you want to have after the final:</label>
+        <br>
+        <input id="gradeWanted" placeholder="100">%</input>
+        <br><br>
+        <button id="button">Go!</button>
+        <p id="output"></p>
+
+        <script>
+            document.getElementById("button").onclick = function() {
+                var currentGrade = document.getElementById("gradeNow").value;
+                var finalWeight = document.getElementById("finalWeight").value;
+                var desiredGrade = document.getElementById("gradeWanted").value;
+
+                // converts percentage to decimal
+                if(currentGrade > 1){
+                    currentGrade /= 100; 
+                }
+                if(finalWeight > 1){
+                    finalWeight /= 100;
+                }
+                if(desiredGrade > 1){
+                    desiredGrade /= 100;
+                }
+
+                document.getElementById("output").innerHTML = "You need to get a " + ((desiredGrade - currentGrade * (1 - finalWeight)) / finalWeight * 100).toFixed(2) + "% on the final";
+            }
+        </script>
+    </body>
+</html>
