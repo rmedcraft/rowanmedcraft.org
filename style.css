@@ -5,3 +5,11 @@ h1 {
 body {
     background-image:url("images/small.jpg");
 }
+.anybutton {
+    top: 30%;
+    left: 55%;
+    width: 100px;
+    height: 60px;
+    position: absolute;
+    z-index: 2;
+}
