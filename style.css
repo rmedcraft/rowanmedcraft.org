@@ -3,7 +3,7 @@ h1 {
     font-family: "Lucida Console", "Courier New", monospace;
 }
 body {
-    background-image:url("images/small.jpg");
+    background-image:url("assets/small.jpg");
 }
 .anybutton {
     top: 30%;

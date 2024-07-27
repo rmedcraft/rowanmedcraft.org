@@ -5,7 +5,7 @@
 	<head>
 		<title>ROWAN MEDCRAFT</title>
 		<link rel="stylesheet" href="style.css" />
-		<link rel="icon" type="image/x-icon" href="images/cap.ico" />
+		<link rel="icon" type="image/x-icon" href="assets/cap.ico" />
 		<!--adds the little image at the top next to the title-->
 	</head>
 
@@ -19,7 +19,7 @@
 		<!--fish website link-->
 		<a href="fish-website/fishhome"
 			><img
-				src="images/fish.jpg"
+				src="assets/fish.jpg"
 				width="100"
 				height="50"
 				alt="fish website from high school"
@@ -37,10 +37,11 @@
       let rowanDead = false
       function killRowanMedcraft() {
         if (!rowanDead) {
-          document.body.style.backgroundImage = "url('images/dead-rowan.jpg')"
+			new Audio('assets/rowan-stabbed.mp3').play()
+          document.body.style.backgroundImage = "url('assets/dead-rowan.jpg')"
           document.getElementById("killRowanButton").textContent = "REVIVE ROWAN MEDCRAFT"
         } else {
-          document.body.style.backgroundImage = "url('images/small.jpg')"
+          document.body.style.backgroundImage = "url('assets/small.jpg')"
           document.getElementById("killRowanButton").textContent = "KILL ROWAN MEDCRAFT"
         }
         rowanDead = !rowanDead
