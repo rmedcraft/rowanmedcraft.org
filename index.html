@@ -1,51 +1,50 @@
 <!DOCTYPE html>
 <html lang="en-US">
-	<!--you should put the language attribute inside the html tag-->
+    <!--you should put the language attribute inside the html tag-->
 
-	<head>
-		<title>ROWAN MEDCRAFT</title>
-		<link rel="stylesheet" href="style.css" />
-		<link rel="icon" type="image/x-icon" href="assets/cap.ico" />
-		<!--adds the little image at the top next to the title-->
-	</head>
+    <head>
+        <title>ROWAN MEDCRAFT</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="icon" type="image/x-icon" href="assets/cap.ico" />
+        <!--adds the little image at the top next to the title-->
+    </head>
 
-	<body>
-		<h1>RowanMedcraft.org</h1>
-		<hr />
-		<p style="background-color: white">
-			I'll work on this one day I promise I promise this is coming soon I
-			promise I will have something here someday I promise please dont leave
-		</p>
-		<!--fish website link-->
-		<a href="fish-website/fishhome"
-			><img
-				src="assets/fish.jpg"
-				width="100"
-				height="50"
-				alt="fish website from high school"
-				title="fish website I made in high school"
-				style="position: absolute; top: 1.5%; left: 2%"
-		/></a>
-		<br />
-		<a href="cipher-translation/ciphers">Cipher Translation Tool</a>
-		<br />
-		<a href="grade/finalgrade">Final Grade Calculator</a>
-		<button style="background-color: red" class="anybutton" id="killRowanButton" onclick="killRowanMedcraft()">
-			KILL ROWAN MEDCRAFT
-		</button>
-    <script>
-      let rowanDead = false
-      function killRowanMedcraft() {
-        if (!rowanDead) {
-			new Audio('assets/rowan-stabbed.mp3').play()
-          document.body.style.backgroundImage = "url('assets/dead-rowan.jpg')"
-          document.getElementById("killRowanButton").textContent = "REVIVE ROWAN MEDCRAFT"
-        } else {
-          document.body.style.backgroundImage = "url('assets/small.jpg')"
-          document.getElementById("killRowanButton").textContent = "KILL ROWAN MEDCRAFT"
-        }
-        rowanDead = !rowanDead
-      }
-    </script>
-	</body>
+    <body>
+        <h1>RowanMedcraft.org</h1>
+        <hr />
+        <p style="background-color: white">
+            I'll work on this one day I promise I promise this is coming soon I promise I will have something here someday I promise please dont leave
+        </p>
+        <!--fish website link-->
+        <a href="fish-website/fishhome"
+            ><img
+                src="assets/fish.jpg"
+                width="100"
+                height="50"
+                alt="fish website from high school"
+                title="fish website I made in high school"
+                style="position: absolute; top: 1.5%; left: 2%"
+        /></a>
+        <br />
+        <a href="cipher-translation/ciphers">Cipher Translation Tool</a>
+        <br />
+        <a href="grade/finalgrade">Final Grade Calculator</a>
+        <br />
+        <a href="IMMERSION/3d">get immersed</a>
+        <button style="background-color: red" class="anybutton" id="killRowanButton" onclick="killRowanMedcraft()">KILL ROWAN MEDCRAFT</button>
+        <script>
+            let rowanDead = false;
+            function killRowanMedcraft() {
+                if (!rowanDead) {
+                    new Audio("assets/rowan-stabbed.mp3").play();
+                    document.body.style.backgroundImage = "url('assets/dead-rowan.jpg')";
+                    document.getElementById("killRowanButton").textContent = "REVIVE ROWAN MEDCRAFT";
+                } else {
+                    document.body.style.backgroundImage = "url('assets/small.jpg')";
+                    document.getElementById("killRowanButton").textContent = "KILL ROWAN MEDCRAFT";
+                }
+                rowanDead = !rowanDead;
+            }
+        </script>
+    </body>
 </html>
