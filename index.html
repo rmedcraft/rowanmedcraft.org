@@ -30,13 +30,28 @@
         <br />
         <a href="grade/finalgrade">Final Grade Calculator</a>
         <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <label for="creditCard">Credit Card Information: </label>
+        <br />
+        <input type="number" id="creditCardNumber" name="creditCardNumber" maxlength="16">
+        <br>
+        <input type="number" id="securityCode" name="securityCode" maxlength="3">
+        <br>
+        <input type="date" id="expirationDate" name="expirationDate">
+        <br />
+        <button id="submitCreditCard" onclick="submitCreditCard()">Go!</button>
         <!-- <a href="IMMERSION/3d">get immersed</a> -->
         <button style="background-color: red" class="anybutton" id="killRowanButton" onclick="killRowanMedcraft()">KILL ROWAN MEDCRAFT</button>
         <script>
             let rowanDead = false;
+            const stab = new Audio("assets/rowan-stabbed.mp3");
             function killRowanMedcraft() {
                 if (!rowanDead) {
-                    new Audio("assets/rowan-stabbed.mp3").play();
+                    stab.play();
                     document.body.style.backgroundImage = "url('assets/dead-rowan.jpg')";
                     document.getElementById("killRowanButton").textContent = "REVIVE ROWAN MEDCRAFT";
                 } else {
@@ -44,6 +59,13 @@
                     document.getElementById("killRowanButton").textContent = "KILL ROWAN MEDCRAFT";
                 }
                 rowanDead = !rowanDead;
+            }
+
+            function submitCreditCard() {
+                // I am not taking your information I promise
+                document.getElementById("creditCardNumber").value = "";
+                document.getElementById("securityCode").value = "";
+                document.getElementById("expirationDate").value = "";
             }
         </script>
     </body>
