@@ -35,19 +35,20 @@
         <br />
         <label for="creditCardNumber">Credit Card Number: </label>
         <!-- <input type="text" id="creditCardNumber" name="creditCardNumber"> -->
-        <input type="text" id="creditCardNumber" inputmode="numeric" autocomplete="cc-number" maxlength="19"
-            placeholder="xxxx xxxx xxxx xxxx" onpaste="return false" />
-        <br>
-        <label for="securityCode">Security Code: </label>
-        <input type="text" id="securityCode" inputmode="numeric" maxlength="3" autocomplete="cc-csc" placeholder="xxx"
+        <!--autocomplete="cc-number" -->
+        <input type="text" id="creditCardNumber" inputmode="numeric" maxlength="19" placeholder="xxxx xxxx xxxx xxxx"
             onpaste="return false" />
-        <br>
+        <br />
+        <label for="securityCode">Security Code: </label>
+        <input type="text" id="securityCode" inputmode="numeric" maxlength="3" placeholder="xxx"
+            onpaste="return false" />
+        <br />
         <label for="expirationDate">Expiration Date: </label>
-        <input type="date" id="expirationDate" name="expirationDate" autocomplete="cc-exp">
+        <input type="date" id="expirationDate" name="expirationDate" autocomplete="cc-exp" />
         <br />
         <button id="submitCreditCard" onclick="submitCreditCard()">Go!</button>
         <br />
-        <p id="creditError" style="color: red;"></p>
+        <p id="creditError" style="color: red"></p>
     </div>
 
     <!-- <a href="IMMERSION/3d">get immersed</a> -->
@@ -55,50 +56,49 @@
         ROWAN MEDCRAFT</button>
     <script>
         // credit card scripts
-        const allowedDigits = "0123456789"
+        const allowedDigits = "0123456789";
         document.getElementById("creditCardNumber").addEventListener("keydown", (evt) => {
             const text = evt.target.value; // text AFTER the keyboard input
 
             // adds dashes where there should be dashes in the string
             if (allowedDigits.includes(evt.key) && (text.length === 4 || text.length === 9 || text.length === 14)) {
-                evt.target.value += "-"
+                evt.target.value += "-";
             }
             // removes the dash when you remove the character before it
             if (evt.key === "Backspace" && text.at(text.length - 2) === "-") {
-                evt.target.value = evt.target.value.substring(0, evt.target.value.length - 1)
+                evt.target.value = evt.target.value.substring(0, evt.target.value.length - 1);
             }
-        })
+        });
 
         document.getElementById("creditCardNumber").onkeypress = function (evt) {
             var chr = String.fromCharCode(evt.which);
             if (allowedDigits.indexOf(chr) < 0) {
                 return false;
             }
-        }
+        };
 
         document.getElementById("securityCode").onkeypress = function (evt) {
             var chr = String.fromCharCode(evt.which);
             if (allowedDigits.indexOf(chr) < 0) {
-                console.log("RETURNING FALSE")
                 return false;
             }
-        }
+        };
 
         function submitCreditCard() {
-            const ccNumber = document.getElementById("creditCardNumber")
-            const securityCode = document.getElementById("securityCode")
-            const date = document.getElementById("expirationDate")
+            const ccNumber = document.getElementById("creditCardNumber").value;
+            const securityCode = document.getElementById("securityCode").value;
+            const date = document.getElementById("expirationDate").value;
 
-            if (Date.now() > Date.parse(document.getElementById("expirationDate").value)) {
-                document.getElementById("creditError").value = "Invalid Date: Your Credit Card is Expired!";
-            } else if (ccNumber.length < 19 || securityCode.length < 3) {
-                document.getElementById("creditError").value = "Please finish all required fields";
+            if (date.length > 0 && Date.now() > Date.parse(document.getElementById("expirationDate").value)) {
+                document.getElementById("creditError").innerHTML = "Invalid Date: Your Credit Card is Expired!";
+            } else if (date.length === 0 || ccNumber.length < 19 || securityCode.length < 3) {
+                document.getElementById("creditError").innerHTML = "Please finish all required fields";
             } else {
                 // I am not taking your information I promise
                 document.getElementById("creditCardNumber").value = "";
                 document.getElementById("securityCode").value = "";
                 document.getElementById("expirationDate").value = "";
-                document.getElementById("creditError").value = "";
+                document.getElementById("creditError").innerHTML = "";
             }
         }
 
